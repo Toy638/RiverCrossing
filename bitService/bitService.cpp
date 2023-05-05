@@ -53,6 +53,8 @@ bool *bitService::intToBits(int intToAssign, int size)
 
 int *bitService::countSetBits(int number, int quantifyOfDrivers, int quantifyOfItems){
 
+    //todo: contar los drivers en base a la cantidad de items que hayan en el bote
+    
     unsigned int countItemsInBoat = 0;
     unsigned int countDrivers = 0;
     unsigned int driverIterator = 0;

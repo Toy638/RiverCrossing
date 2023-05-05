@@ -19,6 +19,7 @@ RiverCrossing::~RiverCrossing()
 
 void RiverCrossing::generateOperations()
 {
+
     int totalOfOperations = pow(2, this->archive->getTotalOfItems());
     int numberOfDrivers = this->archive->getQuantifyOfDrivers();
     int totalOfItems = this->archive->getTotalOfItems();
@@ -31,11 +32,16 @@ void RiverCrossing::generateOperations()
     // Comenzamos a iterar desde el elemento numero 2^quantifyOfItems
     // ya que los elementos anteriores no tienen sentido
 
-    for (int i = positionOfFirstDriver; i < totalOfOperations; i++)
+    for (int i = 0; i < totalOfOperations; i++)
     {
         // cout << "Convirtiendo el numero: " << i << endl;
-        cout << "Probando con la operacion: " << i << endl;
+        cout<< "-----" << endl;
+        cout << "Generando la operacion: " << i << endl;
+
         int *ItemsInBoatAndDrivers = bitServ->countSetBits(i, numberOfDrivers, quantifyOfItems);
+        cout << "cantidad de Items contados" << ItemsInBoatAndDrivers[0] << endl;
+        cout << "cantidad de Drivers contados" << ItemsInBoatAndDrivers[0] << endl;
+
         //! bug cantidad de drivers y items en el bote
         if (ItemsInBoatAndDrivers[0] > maxCapacityBoat || ItemsInBoatAndDrivers[1] < 1)
         {
@@ -47,6 +53,7 @@ void RiverCrossing::generateOperations()
         cout << "operacion" << i << " creada" << endl;
     }
 
+    //*impresion de operaciones
     Node *aux = this->Operations->getHead();
 
     while (aux != NULL)
@@ -54,6 +61,7 @@ void RiverCrossing::generateOperations()
         aux->getOperation()->print(this->archive->getTotalOfItems());
         aux = aux->getNextNode();
     }
+
 }
 
 void RiverCrossing::generateRestrictions()
@@ -112,7 +120,7 @@ void RiverCrossing::successors(State *e)
 
     Node *auxNodeOp = this->Operations->getHead();
 
-    State *ts = new State(quantifyOfDrivers, quantifyOfItems, totalOfItems);
+    State *ts = new State(totalOfItems);
     for (int i = 0; i < this->Operations->getSize(); i++)
     {
         ts = auxNodeOp->getOperation()->move(e, totalOfItems);
@@ -166,7 +174,7 @@ void RiverCrossing::solve()
     int quantifyOfDrivers = this->archive->getQuantifyOfDrivers();
     int quantifyOfItems = this->archive->getQuantifyOfItems();
 
-    State *initialState = new State(quantifyOfItems, quantifyOfDrivers, totalOfItems);
+    State *initialState = new State(totalOfItems);
 
     this->open->insertEnd(new Node(initialState));
 
@@ -181,11 +189,11 @@ void RiverCrossing::solve()
             cout << "Solucion encontrada" << endl;
             e->printPath(totalOfItems);
             // todo: imprimir solucion
-            return;
+            break;
         }
 
         cout << "Cantidad de nodos en Abiertos: " << open->getSize() << endl;
-        cout << "Generando sucesores: " << i << endl;
+        cout << "Generando sucesores: "<< endl;
         cout << "Del estado:";
         e->print(totalOfItems);
         successors(e);

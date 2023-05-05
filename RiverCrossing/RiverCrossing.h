@@ -29,7 +29,17 @@ private:
 
 public:
 
+    /**
+     * @brief Construct a new River Crossing object
+     * 
+     * @param filename name of the archive to be read 
+     */
     RiverCrossing(string filename);
+
+    /**
+     * @brief Destroy the River Crossing object
+     * 
+     */
     ~RiverCrossing();
 
     //todo: intentar implementar una especie de arreglo que en caso de 
@@ -37,10 +47,35 @@ public:
     // Definir un tamaño inicial de manera tal que sea poco probable tener que aumentar el tamaño
     // trabajar con una variable auxiliar fuera de inser operation es decir en generateOperations
 
+    /**
+     * @brief Generate the Operations of the problem
+     * 
+     * @param operation 
+     */
     void generateOperations();
+
+
+    /**
+     * @brief Generate the Restrictions of the problem
+     * 
+     * @param restriction 
+     */
     void generateRestrictions();
 
+
+    /**
+     * @brief Generate the Sucessors of the problem
+     * 
+     * @param state 
+     */
     void successors(State *e);
+
+    /**
+     * @brief solve the problem
+     * 
+     * @param state 
+     */
+
     void solve();
 
 

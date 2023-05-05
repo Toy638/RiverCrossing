@@ -74,9 +74,9 @@ bool Operation::canMove(State *state){
 
 // Todo: verificar si está bien con el + o usar el pperador & ~
 // ! verificar que retorne el nullptr en la funcion successor
-State *Operation::move(State *state, int quantifyOfItems, int quantifyOfDrivers, int totalOfItems){
+State *Operation::move(State *state, int quantifyOfItems){
 
-    State *stateReturn = new State(quantifyOfItems, quantifyOfDrivers, (quantifyOfDrivers + quantifyOfItems));
+    State *stateReturn = new State(quantifyOfItems);
 
     if(!this->canMove(state)){
         return nullptr;

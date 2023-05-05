@@ -13,21 +13,71 @@ private:
     int quantifyOfItemsInBoat;
 
 public:
-    // Constructor
+    // *CONSTRUCTORS
+
+    /** 
+     * @brief Construct a new Operation object
+     *  @param numRepresentation Numeric representation of the operation
+     *  @param quantifyOfItemsInBoat Quantify of items in the boat in the operation
+     *  @param totalOfItems Total of items in the problem
+     * 
+     *  @return Operation*
+    */
     Operation(int numRepresentation, int quantifyOfItemsInBoat, int totalOfItems);
     // ~Operation();
 
-    // Getters
+    //* GETTERS
+
+    /**
+     * @brief Get the Operation object
+     * 
+     * @return bool* 
+     */
     bool *getOperation();
+   
+    /**
+     * @brief Get the Num Representation object 
+     * 
+     * @return int 
+     */
+
     int getNumRepresentation();
+    
+    /**
+     * @brief Get the Quantify Of Items In Boat object 
+     * 
+     * @return int 
+     */
     int getQuantifyOfItemsInBoat();
 
-    //printing
+    //* PRINTING
+
+    /**
+     * @brief Print the operation
+     * 
+     * @param quantifyOfItems 
+     */
     void print(int quantifyOfItems);
 
 
-    // Operations
+    // *OPERATIONS
+
+    /**
+     * @brief Check if the operation can be done in the state
+     * 
+     * @param state 
+     * @return true 
+     * @return false 
+     */
     bool canMove(State *state);
+    
+    /**
+     * @brief Move the state from the operation
+     * 
+     * @param state Prev State
+     * @param quantifyOfItems Total Items in the problem
+     * @return State* 
+     */
     State *move(State *state, int quantifyOfItems);
 
 };

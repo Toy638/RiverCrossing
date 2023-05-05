@@ -2,8 +2,7 @@
 
 using namespace std;
 
-State::State(int quantifyOfItems, int quantifyOfDrivers,int totalOfItems){
-
+State::State(int totalOfItems){
 
     this->river = new bool[totalOfItems];
 
@@ -14,10 +13,6 @@ State::State(int quantifyOfItems, int quantifyOfDrivers,int totalOfItems){
     this->sideBoat = LEFT;
     this->numRightRiver = 0;
     this->previousState = nullptr;
-
-    if(totalOfItems == quantifyOfDrivers){
-        this->numLeftRiver = pow(2, totalOfItems) - 1 - pow(2, quantifyOfItems);
-    }
     this->numLeftRiver = pow(2, totalOfItems) - 1;
 
 }
@@ -152,19 +147,8 @@ void State::printRightRiver( int quantifyOfItems){
 //todo: modificar en todos lados en los que aparezca
 bool State::isFinal(int quantifyOfDrivers, int quantifyOfItems, int totalOfItems){
 
-    if(quantifyOfDrivers == totalOfItems){
-        cout << "entro al caso de los canibales" << endl;
-        return ( this->getNumRightRiver() == ( (pow(2,totalOfItems)-1) - (pow(2,quantifyOfItems) -1) ));
-    }
-    cout << "Entro al caso general" << endl;
     return (this->getNumRightRiver() == (pow(2,totalOfItems)-1));
     
-    // if(totalOfItems == quantifyOfDrivers){
-    //     return (this->getNumLeftRiver() == (pow(2,totalOfItems)-1) - );
-    // }
-
-    // return (this->getNumRightRiver() == (pow(2,totalOfItems)-1));
-
 }
 
 void State::printPath(int quantifyOfItems){
